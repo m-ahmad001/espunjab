@@ -27,7 +27,7 @@ const statusObj = {
   null: { color: 'primary', text: 'Pending' }
 }
 
-const AdminLogs = () => {
+const AllRecords = () => {
   const [rows, setRows] = useState([])
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
@@ -36,7 +36,7 @@ const AdminLogs = () => {
       flex: 0.25,
       field: 'created_at',
       minWidth: 200,
-      headerName: 'Request Date',
+      headerName: 'Date',
       renderCell: ({ row }) => {
         return <Box sx={{ display: 'flex', alignItems: 'center' }}>{fDate(row.created_at)}</Box>
       }
@@ -44,57 +44,46 @@ const AdminLogs = () => {
     {
       flex: 0.3,
       minWidth: 250,
-      field: 'users.email',
-      headerName: 'User',
-      renderCell: ({ row }) => <Typography variant='body2'>{row?.users?.email ?? 'N/A'}</Typography>
+      field: 'auto_id',
+      headerName: 'Stamp ID',
+      renderCell: ({ row }) => <Typography variant='body2'>{row?.auto_id}</Typography>
     },
     {
       flex: 0.3,
       minWidth: 250,
-      field: 'balance',
+      field: 'type_amount',
       headerName: 'Amount',
-      renderCell: ({ row }) => <Typography variant='body2'>${row.balance || 0}</Typography>
+      renderCell: ({ row }) => <Typography variant='body2'>{row.type_amount || 0}</Typography>
     },
 
     {
       flex: 0.2,
       minWidth: 130,
-      field: 'plan_id',
-      headerName: 'Plan Name',
+      field: 'validity',
+      headerName: 'Validity',
       renderCell: ({ row }) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Typography sx={{ color: 'text.secondary', textTransform: 'capitalize' }}>{row.plan_id}</Typography>
+          <Typography sx={{ color: 'text.secondary', textTransform: 'capitalize' }}>{fDate(row.validity)}</Typography>
         </Box>
       )
     },
     {
       flex: 0.15,
       minWidth: 110,
-      field: 'type',
-      headerName: 'Status',
+      field: 'Action',
+      headerName: 'StaActiontus',
       renderCell: ({ row }) => (
-        <CustomChip
-          skin='light'
-          size='small'
-          label={row?.type}
-          color='success'
-          sx={{ textTransform: 'capitalize', '& .MuiChip-label': { px: 2.5, lineHeight: 1.385 } }}
-        />
+        <>
+          <Button variant='contained'>Action</Button>
+        </>
       )
     }
   ]
 
-  // *** HANDLE APPROVED
-  const currentDate = new Date()
-  const sevenDaysFromNow = addDays(currentDate, 7)
-
   // *** HANDLE GET REQUEST
   const getWithdraws = async () => {
     try {
-      let { data: deposits, error } = await supabase
-        .from('logs')
-        .select('*,users(email)')
-        .order('created_at', { ascending: false })
+      let { data: deposits, error } = await supabase.from('forms').select('*').order('created_at', { ascending: false })
 
       console.log('🚀 ~ getWithdraws ~ data:', deposits)
 
@@ -125,4 +114,4 @@ const AdminLogs = () => {
   )
 }
 
-export default AdminLogs
+export default AllRecords

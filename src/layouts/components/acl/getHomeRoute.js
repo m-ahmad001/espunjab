@@ -2,8 +2,8 @@
  *  Set Home URL based on User Roles
  */
 const getHomeRoute = role => {
-  if (role === 'client') return '/dashboard'
-  else return '/admin_deposits_requests'
+  if (role === 'client') return '/acl'
+  else return '/acl'
 }
 
 export default getHomeRoute
