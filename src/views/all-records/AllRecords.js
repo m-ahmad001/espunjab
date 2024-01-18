@@ -20,6 +20,7 @@ import { Button, IconButton } from '@mui/material'
 import IconifyIcon from 'src/@core/components/icon'
 import toast from 'react-hot-toast'
 import { addDays } from 'date-fns'
+import Link from 'next/link'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -74,7 +75,9 @@ const AllRecords = () => {
       headerName: 'StaActiontus',
       renderCell: ({ row }) => (
         <>
-          <Button variant='contained'>Action</Button>
+          <Button variant='contained' component={Link} href={`/e-stamp-information/${row?.auto_id}`}>
+            Action
+          </Button>
         </>
       )
     }
