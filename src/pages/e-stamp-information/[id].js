@@ -124,7 +124,7 @@ const RecordView = () => {
                     {entry.key}
                   </Typography>
                 </Stack>
-                <Stack sx={{ width: { md: 300 } }} alignItems={'self-start'}>
+                <Stack sx={{ width: 300 }} alignItems={'self-start'}>
                   <Typography variant='body1' sx={{ textAlign: 'left', color: 'black' }}>
                     {entry.value}
                   </Typography>
