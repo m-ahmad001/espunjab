@@ -14,6 +14,7 @@ import supabase from 'src/configs/supabase'
 import toast from 'react-hot-toast'
 import { useBoolean } from 'src/hooks/use-boolean'
 import { LoadingButton } from '@mui/lab'
+import converter from 'number-to-words'
 
 const generateAutoId = () => {
   const randomString = Math.random().toString(36).substring(2, 14).toUpperCase()
@@ -43,20 +44,22 @@ const SecondPage = () => {
   const handleChange = e => {
     const { name, value } = e.target
 
-    const formattedValue = name === 'issueDate' || name === 'validity' ? new Date(value).toUTCString() : value
+    // const formattedValue = name === 'issueDate' || name === 'validity' ? new Date(value).toUTCString() : value
     setFormData(prevData => ({
       ...prevData,
-      [name]: formattedValue
+      [name]: value
     }))
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
     isLoading.onTrue()
+    const amountInWords = converter.toWords(formData.typeAmount)
 
     // Insert form data into the Supabase table
     const { data, error } = await supabase.from('forms').upsert([
       {
+        amountInWords: amountInWords,
         issue_date: formData.issueDate,
         recordType: formData.recordType,
         type_amount: formData.typeAmount,
@@ -134,7 +137,6 @@ const SecondPage = () => {
                 />
                 <TextField
                   label='Type'
-                  type='number'
                   name='recordType'
                   value={formData.recordType}
                   onChange={handleChange}

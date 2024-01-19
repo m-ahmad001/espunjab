@@ -1,6 +1,7 @@
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { saveAs } from 'file-saver'
 
 // ** Icon Imports
 
@@ -15,6 +16,7 @@ import supabase from 'src/configs/supabase'
 import { fDate } from 'src/utils/format-time'
 import { Margin, usePDF } from 'react-to-pdf'
 import Barcode from 'react-barcode'
+import axios from 'axios'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -62,6 +64,10 @@ const RecordView = () => {
       key: 'Type Amount:',
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.type_amount}</Typography>
     },
+    {
+      key: 'Amount in words:',
+      value: userData?.amountInWords
+    },
     { key: '', value: '' },
     { key: 'Validity:', value: fDate(userData?.validity) },
     { key: 'Description:', value: userData?.description },
@@ -75,7 +81,7 @@ const RecordView = () => {
   ]
 
   return (
-    <>
+    <Box sx={{ width: ' 210mm', height: '297mm', margin: '0 auto' }}>
       <Box sx={{ textAlign: 'right', mb: 2 }}>
         <Button
           variant='outlined'
@@ -106,7 +112,7 @@ const RecordView = () => {
         <Grid container spacing={2}>
           {/* ### RECORD INFO */}
 
-          <Grid item xs={12} md={8}>
+          <Grid item xs={8}>
             <Barcode value={userData?.auto_id} height='35' width='1' />
             {dataEntries.map((entry, index) => (
               <Box
@@ -126,8 +132,8 @@ const RecordView = () => {
               </Box>
             ))}
 
-            <Box sx={{ width: '800px', border: '3px solid black', p: 3, my: 7 }}>
-              <Typography sx={{ color: 'black' }}>
+            <Box sx={{ width: '90%', border: '3px solid black', p: 3, my: 7 }}>
+              <Typography sx={{ color: 'black', fontFamily: 'Noto Nastaliq Urdu", serif' }}>
                 نوٹ: یہ ٹرانزیکشن صرف جاری ہونے کی تاریخ سے 7 دن تک درست ہے، اس اسکین کیو آر کوڈ کی تصدیق کے لیے یا 8100
                 پر ایس ایم ایس بھیجیں۔
               </Typography>
@@ -135,8 +141,17 @@ const RecordView = () => {
           </Grid>
 
           {/* ### QRCODE SCANNING */}
-          <Grid item xs={12} md={4}>
-            <Box elevation={1} sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Grid item xs={4}>
+            <Box
+              sx={{
+                padding: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+
+                // justifyContent: 'center'
+              }}
+            >
               <QRCode value={JSON.stringify(userData)} />
               <Typography variant='h6' gutterBottom>
                 Scan for online verification
@@ -145,7 +160,7 @@ const RecordView = () => {
           </Grid>
         </Grid>
       </Paper>
-    </>
+    </Box>
   )
 }
 
