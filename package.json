@@ -36,6 +36,7 @@
     "@mui/x-data-grid": "6.0.1",
     "@netlify/functions": "^2.4.1",
     "@popperjs/core": "2.11.6",
+    "@react-pdf/renderer": "^3.2.1",
     "@reduxjs/toolkit": "1.9.3",
     "@supabase/supabase-js": "^2.39.1",
     "apexcharts-clevision": "3.28.5",
