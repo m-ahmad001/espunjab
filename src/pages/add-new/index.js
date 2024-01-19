@@ -26,6 +26,7 @@ const SecondPage = () => {
 
   const [formData, setFormData] = useState({
     issueDate: '',
+    recordType: '',
     typeAmount: '',
     validity: '',
     description: '',
@@ -57,6 +58,7 @@ const SecondPage = () => {
     const { data, error } = await supabase.from('forms').upsert([
       {
         issue_date: formData.issueDate,
+        recordType: formData.recordType,
         type_amount: formData.typeAmount,
         validity: formData.validity,
         description: formData.description,
@@ -83,6 +85,7 @@ const SecondPage = () => {
         validity: '',
         description: '',
         reason: '',
+        recordType: '',
         applicantName: '',
         vendorInformation: '',
         checkbox: '',
@@ -126,6 +129,14 @@ const SecondPage = () => {
                   type='number'
                   name='typeAmount'
                   value={formData.typeAmount}
+                  onChange={handleChange}
+                  required
+                />
+                <TextField
+                  label='Type'
+                  type='number'
+                  name='recordType'
+                  value={formData.recordType}
                   onChange={handleChange}
                   required
                 />

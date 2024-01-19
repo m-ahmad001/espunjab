@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import supabase from 'src/configs/supabase'
 import { fDate } from 'src/utils/format-time'
 import { Margin, usePDF } from 'react-to-pdf'
+import Barcode from 'react-barcode'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -49,19 +50,32 @@ const RecordView = () => {
   }, [])
 
   const dataEntries = [
-    { key: 'User ID', value: userData?.id },
-    { key: 'Issue Date', value: fDate(userData?.issue_date) },
-    { key: 'Type Amount', value: userData?.type_amount },
-    { key: 'Validity', value: fDate(userData?.validity) },
-    { key: 'Description', value: userData?.description },
-    { key: 'Reason', value: userData?.reason },
-    { key: 'Applicant Name', value: userData?.applicant_name },
-    { key: 'Vendor Information', value: userData?.vendor_information },
-    { key: userData?.checkbox, value: userData?.userName },
-    { key: 'Agent', value: userData?.agent },
-    { key: 'Address', value: userData?.address },
-    { key: 'Auto ID', value: userData?.auto_id },
-    { key: 'Created At', value: new Date(userData?.created_at).toLocaleString() }
+    {
+      key: 'Issue Date:',
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{fDate(userData?.issue_date)}</Typography>
+    },
+    {
+      key: 'Auto ID:',
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.auto_id}</Typography>
+    },
+    {
+      key: 'Type:',
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.recordType || '-'}</Typography>
+    },
+    {
+      key: 'Type Amount:',
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.type_amount}</Typography>
+    },
+    { key: '', value: '' },
+    { key: 'Validity:', value: fDate(userData?.validity) },
+    { key: 'Description:', value: userData?.description },
+    { key: 'Reason:', value: userData?.reason },
+    { key: 'Applicant Name:', value: userData?.applicant_name },
+    { key: 'Vendor Information:', value: userData?.vendor_information },
+    { key: `${userData?.checkbox}:`, value: userData?.userName },
+    { key: 'Agent:', value: userData?.agent },
+    { key: 'Address:', value: userData?.address },
+    { key: 'Created At:', value: new Date(userData?.created_at).toLocaleString() }
   ]
 
   return (
@@ -81,31 +95,56 @@ const RecordView = () => {
         </Button>
       </Box>
       <Paper elevation={1} sx={{ padding: 5, height: '297mm' }} ref={targetRef}>
+        <Typography
+          variant='h4'
+          sx={{
+            my: 4,
+            textAlign: 'center',
+            fontWeight: 'bold',
+            textDecoration: 'underline',
+            textDecorationThickness: '2px'
+          }}
+        >
+          E-STAMP
+        </Typography>
         <Grid container spacing={2}>
+          {/* ### RECORD INFO */}
+
           <Grid item xs={12} md={8}>
+            <Barcode value={userData?.auto_id} height='35' width='1' />
             {dataEntries.map((entry, index) => (
               <Box
                 key={index}
                 sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}
               >
                 <Stack>
-                  <Typography variant='body1'>{entry.key}:</Typography>
+                  <Typography variant='body1' sx={{ color: 'black' }}>
+                    {entry.key}
+                  </Typography>
                 </Stack>
-                <Stack sx={{ width: { md: 200 } }} alignItems={'self-start'}>
-                  <Typography variant='body1' sx={{ textAlign: 'left' }}>
+                <Stack sx={{ width: { md: 300 } }} alignItems={'self-start'}>
+                  <Typography variant='body1' sx={{ textAlign: 'left', color: 'black' }}>
                     {entry.value}
                   </Typography>
                 </Stack>
               </Box>
             ))}
+
+            <Box sx={{ width: '800px', border: '3px solid black', p: 3, my: 7 }}>
+              <Typography sx={{ color: 'black' }}>
+                نوٹ: یہ ٹرانزیکشن صرف جاری ہونے کی تاریخ سے 7 دن تک درست ہے، اس اسکین کیو آر کوڈ کی تصدیق کے لیے یا 8100
+                پر ایس ایم ایس بھیجیں۔
+              </Typography>
+            </Box>
           </Grid>
 
+          {/* ### QRCODE SCANNING */}
           <Grid item xs={12} md={4}>
             <Box elevation={1} sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Typography variant='h6' gutterBottom>
-                QR Code
-              </Typography>
               <QRCode value={JSON.stringify(userData)} />
+              <Typography variant='h6' gutterBottom>
+                Scan for online verification
+              </Typography>
             </Box>
           </Grid>
         </Grid>
