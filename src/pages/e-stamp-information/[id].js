@@ -35,10 +35,6 @@ const RecordView = () => {
     try {
       let { data: deposits, error } = await supabase.from('forms').select('*').eq('auto_id', id).single()
       setUserData(deposits)
-
-      // console.log('🚀 ~ getData ~ data:', deposits)
-
-      setRows(deposits)
     } catch (error) {
       console.log('🚀 ~ getData ~ error:', error)
     }
