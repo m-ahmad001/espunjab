@@ -16,9 +16,9 @@ import { useBoolean } from 'src/hooks/use-boolean'
 import { LoadingButton } from '@mui/lab'
 
 const generateAutoId = () => {
-  const randomId = Math.floor(Math.random() * 90000) + 10000
+  const randomString = Math.random().toString(36).substring(2, 14).toUpperCase()
 
-  return `PB-VHR-${randomId}`
+  return `PB-VHR-${randomString}`
 }
 
 const SecondPage = () => {
