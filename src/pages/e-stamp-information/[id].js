@@ -53,7 +53,7 @@ const RecordView = () => {
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{fDate(userData?.issue_date)}</Typography>
     },
     {
-      key: 'Auto ID:',
+      key: 'ID:',
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.auto_id}</Typography>
     },
     {
@@ -152,7 +152,7 @@ const RecordView = () => {
                 // justifyContent: 'center'
               }}
             >
-              <QRCode value={JSON.stringify(userData)} />
+              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} />
               <Typography variant='h6' gutterBottom>
                 Scan for online verification
               </Typography>
