@@ -15,11 +15,15 @@ import toast from 'react-hot-toast'
 import { useBoolean } from 'src/hooks/use-boolean'
 import { LoadingButton } from '@mui/lab'
 import converter from 'number-to-words'
+import uuidv4 from 'src/utils/uuidv4'
 
-const generateAutoId = () => {
-  const randomString = Math.random().toString(36).substring(2, 14).toUpperCase()
+function generateRandomId() {
+  const uuid = uuidv4()
 
-  return `PB-VHR-${randomString}`
+  // Extracting a fixed 16-character substring from the UUID
+  const shortId = uuid.replace(/-/g, '').substring(0, 16).toUpperCase()
+
+  return `PB-VHR-${shortId}`
 }
 
 const SecondPage = () => {
@@ -38,7 +42,7 @@ const SecondPage = () => {
     agent: '',
     address: '',
     userName: '',
-    autoId: generateAutoId()
+    autoId: generateRandomId()
   })
 
   const handleChange = e => {

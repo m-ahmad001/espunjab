@@ -63,6 +63,8 @@ const RecordView = () => {
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.type_amount}</Typography>
     },
     { key: '', value: '' },
+    { key: '', value: '' },
+    { key: '', value: '' },
     { key: 'Description:', value: userData?.description },
     { key: 'Applicant Name:', value: userData?.applicant_name },
     { key: `${userData?.checkbox}:`, value: userData?.userName },
