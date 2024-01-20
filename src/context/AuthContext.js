@@ -56,9 +56,10 @@ const AuthProvider = ({ children }) => {
       localStorage.removeItem('accessToken')
       setUser(null)
       setLoading(false)
-      if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
-        router.replace('/login')
-      }
+
+      // if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
+      //   router.replace('/login')
+      // }
     }
   }
   useEffect(() => {

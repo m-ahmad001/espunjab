@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import QRCode from 'qrcode.react'
 import { useEffect, useState } from 'react'
 import supabase from 'src/configs/supabase'
-import { fDate } from 'src/utils/format-time'
+import { fDate, fDateTime } from 'src/utils/format-time'
 import { Margin, usePDF } from 'react-to-pdf'
 import Barcode from 'react-barcode'
 import axios from 'axios'
@@ -49,10 +49,6 @@ const RecordView = () => {
 
   const dataEntries = [
     {
-      key: 'Issue Date:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{fDate(userData?.issue_date)}</Typography>
-    },
-    {
       key: 'ID:',
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.auto_id}</Typography>
     },
@@ -60,24 +56,30 @@ const RecordView = () => {
       key: 'Type:',
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.recordType || '-'}</Typography>
     },
+
     {
-      key: 'Type Amount:',
+      key: 'Amount:',
       value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.type_amount}</Typography>
     },
+    { key: '', value: '' },
+    { key: 'Description:', value: userData?.description },
+    { key: 'Applicant Name:', value: userData?.applicant_name },
+    { key: `${userData?.checkbox}:`, value: userData?.userName },
+    { key: 'Agent:', value: userData?.agent },
+    { key: 'Address:', value: userData?.address },
+    {
+      key: 'Issue Date:',
+      value: fDateTime(userData?.issue_date)
+    },
+    { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
     {
       key: 'Amount in words:',
       value: userData?.amountInWords
     },
-    { key: '', value: '' },
-    { key: 'Validity:', value: fDate(userData?.validity) },
-    { key: 'Description:', value: userData?.description },
     { key: 'Reason:', value: userData?.reason },
-    { key: 'Applicant Name:', value: userData?.applicant_name },
-    { key: 'Vendor Information:', value: userData?.vendor_information },
-    { key: `${userData?.checkbox}:`, value: userData?.userName },
-    { key: 'Agent:', value: userData?.agent },
-    { key: 'Address:', value: userData?.address },
-    { key: 'Created At:', value: new Date(userData?.created_at).toLocaleString() }
+    { key: 'Vendor Information:', value: userData?.vendor_information }
+
+    // { key: 'Created At:', value: new Date(userData?.created_at).toLocaleString() }
   ]
 
   return (
@@ -147,13 +149,13 @@ const RecordView = () => {
                 padding: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'flex-start'
+                alignItems: 'center'
 
                 // justifyContent: 'center'
               }}
             >
               <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} />
-              <Typography variant='h6' gutterBottom>
+              <Typography variant='body1' gutterBottom my={3}>
                 Scan for online verification
               </Typography>
             </Box>

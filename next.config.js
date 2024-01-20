@@ -10,11 +10,10 @@ module.exports = {
   reactStrictMode: false,
 
   webpack: config => {
-    ;(config.resolve.alias.canvas = false),
-      (config.resolve.alias = {
-        ...config.resolve.alias,
-        apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
-      })
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
+    }
 
     return config
   }
