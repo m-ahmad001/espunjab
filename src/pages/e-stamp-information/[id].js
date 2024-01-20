@@ -17,6 +17,7 @@ import { fDate, fDateTime } from 'src/utils/format-time'
 import { Margin, usePDF } from 'react-to-pdf'
 import Barcode from 'react-barcode'
 import axios from 'axios'
+import Image from 'next/image'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -134,11 +135,8 @@ const RecordView = () => {
               </Box>
             ))}
 
-            <Box sx={{ width: '90%', border: '3px solid black', p: 3, my: 7 }}>
-              <Typography sx={{ color: 'black', fontFamily: 'Noto Nastaliq Urdu", serif' }}>
-                نوٹ: یہ ٹرانزیکشن صرف جاری ہونے کی تاریخ سے 7 دن تک درست ہے، اس اسکین کیو آر کوڈ کی تصدیق کے لیے یا 8100
-                پر ایس ایم ایس بھیجیں۔
-              </Typography>
+            <Box sx={{ p: 3, my: 7 }}>
+              <Image width={700} src='/stamp.png' height={100} />{' '}
             </Box>
           </Grid>
 
