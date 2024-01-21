@@ -174,6 +174,7 @@ const RecordView = () => {
                 variant='body1'
                 fontWeight='700'
                 color='black'
+                lang='ur' // Add the lang attribute here
                 sx={{ textAlign: 'right', padding: 3 }}
               >
                 نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ
