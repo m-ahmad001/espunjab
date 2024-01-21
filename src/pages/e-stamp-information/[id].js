@@ -121,7 +121,7 @@ const RecordView = () => {
         >
           E-STAMP
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {/* ### RECORD INFO */}
 
           <Grid item xs={8}>
