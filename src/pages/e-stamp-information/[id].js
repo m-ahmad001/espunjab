@@ -36,7 +36,7 @@ const RecordView = () => {
   // *** HANDLE GET REQUEST
   const getData = async () => {
     try {
-      let { data: deposits, error } = await supabase.from('forms').select('*').eq('id', id).single()
+      let { data: deposits, error } = await supabase.from('forms').select('*').eq('auto_id', id).single()
       setUserData(deposits)
     } catch (error) {
       console.log('🚀 ~ getData ~ error:', error)
@@ -154,7 +154,7 @@ const RecordView = () => {
                 // justifyContent: 'center'
               }}
             >
-              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.id}`} />
+              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} />
               <Typography variant='body1' gutterBottom my={3}>
                 Scan for online verification
               </Typography>
