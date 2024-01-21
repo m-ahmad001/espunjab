@@ -179,7 +179,7 @@ const RecordView = () => {
               >
                 نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ
                 کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے
-                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to 8100</div>
+                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to 8100.</div>
               </Typography>
               {/* <Image width={700} src='/stamp.png' height={100} /> */}
             </Box>
