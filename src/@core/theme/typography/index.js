@@ -46,7 +46,7 @@ const typography = {
     letterSpacing: '0.15px'
   },
   body2: {
-    lineHeight: 1.429,
+    lineHeight: 1,
     letterSpacing: '0.15px'
   },
   button: {

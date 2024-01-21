@@ -125,19 +125,19 @@ const RecordView = () => {
           {/* ### RECORD INFO */}
 
           <Grid item xs={8}>
-            <Barcode value={userData?.auto_id} height='35' width='1' />
+            <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' />
             {dataEntries.map((entry, index) => (
               <Box
                 key={index}
                 sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}
               >
                 <Stack>
-                  <Typography variant='body1' sx={{ color: 'black', fontSize: '12px' }}>
+                  <Typography variant='body2' sx={{ color: 'black', fontSize: '12px' }}>
                     {entry.key}
                   </Typography>
                 </Stack>
                 <Stack sx={{ width: 300 }} alignItems={'self-start'}>
-                  <Typography variant='body1' sx={{ textAlign: 'left', color: 'black', fontSize: '12px' }}>
+                  <Typography variant='body2' sx={{ textAlign: 'left', color: 'black', fontSize: '12px' }}>
                     {entry.value}
                   </Typography>
                 </Stack>
@@ -161,7 +161,11 @@ const RecordView = () => {
                 // justifyContent: 'center'
               }}
             >
-              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} size={100} />
+              <QRCode
+                value={`https://espunjabs.netlify.app/eStampCitizenPortal/GeneratePDF/Stamp_Receipt.html/${userData?.auto_id}`}
+                size={100}
+                level='H'
+              />
               <Typography variant='body1' gutterBottom my={3} color='black'>
                 Scan for online verification
               </Typography>
