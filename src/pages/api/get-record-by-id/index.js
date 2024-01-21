@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     try {
       const { id } = req.body // Assuming the ID is passed in the request body
 
-      let { data: rec, error } = await supabase.from('forms').select('*').eq('auto_id', id).single()
+      let { data: rec, error } = await supabase.from('forms').select('*').eq('id', id).single()
 
       // Set CORS headers to allow any origin
       res.setHeader('Access-Control-Allow-Origin', '*')

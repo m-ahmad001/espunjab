@@ -75,7 +75,7 @@ const AllRecords = () => {
       headerName: 'StaActiontus',
       renderCell: ({ row }) => (
         <>
-          <Button variant='contained' component={Link} href={`/e-stamp-information/${row?.auto_id}`}>
+          <Button variant='contained' component={Link} href={`/e-stamp-information/${row?.id}`}>
             Action
           </Button>
         </>
