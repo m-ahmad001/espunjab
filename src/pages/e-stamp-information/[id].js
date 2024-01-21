@@ -109,7 +109,8 @@ const RecordView = () => {
             textAlign: 'center',
             fontWeight: 'bold',
             textDecoration: 'underline',
-            textDecorationThickness: '2px'
+            textDecorationThickness: '2px',
+            color: 'black'
           }}
         >
           E-STAMP
@@ -154,8 +155,8 @@ const RecordView = () => {
                 // justifyContent: 'center'
               }}
             >
-              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} />
-              <Typography variant='body1' gutterBottom my={3}>
+              <QRCode value={`https://espunjabs.netlify.app/?eStampId=${userData?.auto_id}`} size={100} />
+              <Typography variant='body1' gutterBottom my={3} color='black'>
                 Scan for online verification
               </Typography>
             </Box>
