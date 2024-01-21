@@ -54,13 +54,17 @@ const RecordView = () => {
   const dataEntries = [
     {
       key: 'ID:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black', lineHeight: 1 }}>{userData?.auto_id}</Typography>
+      value: (
+        <Typography sx={{ fontWeight: 500, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+          <b>{userData?.auto_id}</b>
+        </Typography>
+      )
     },
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontWeight: 'bold', color: 'black', lineHeight: 1 }}>
-          {userData?.recordType || '-'}
+        <Typography sx={{ fontWeight: 500, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+          <b>{userData?.recordType || '-'}</b>
         </Typography>
       )
     },
@@ -68,8 +72,17 @@ const RecordView = () => {
     {
       key: 'Amount:',
       value: (
-        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px', lineHeight: 1 }}>
-          {userData?.type_amount}
+        <Typography
+          sx={{
+            fontWeight: 500,
+            color: 'black',
+            lineHeight: 1,
+            fontSize: '12px',
+            fontWeight: 'bolder',
+            fontStyle: '-moz-initial'
+          }}
+        >
+          <b>Rs {userData?.type_amount}/-</b>
         </Typography>
       )
     },
@@ -116,7 +129,7 @@ const RecordView = () => {
         <Typography
           variant='h4'
           sx={{
-            my: 4,
+            my: 1,
             textAlign: 'center',
             fontWeight: 'bold',
             textDecoration: 'underline',
@@ -126,23 +139,28 @@ const RecordView = () => {
         >
           E-STAMP
         </Typography>
-        <Grid container spacing={1}>
+        <Grid container spacing={1} sx={{ paddingLeft: '70px', paddingRight: '40px' }}>
           {/* ### RECORD INFO */}
-
+          {/* <Grid item xs={12} ml={-2}></Grid> */}
           <Grid item xs={8}>
-            <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' />
+            <div style={{ marginLeft: -10 }}>
+              <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' />
+            </div>
             {dataEntries.map((entry, index) => (
               <Box
                 key={index}
                 sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}
               >
                 <Stack>
-                  <Typography variant='body2' sx={{ color: 'black', fontSize: '12px' }}>
+                  <Typography variant='body2' sx={{ color: 'black', fontSize: '12px', lineHeight: 1 }}>
                     {entry.key}
                   </Typography>
                 </Stack>
-                <Stack sx={{ width: 300 }} alignItems={'self-start'}>
-                  <Typography variant='body2' sx={{ textAlign: 'left', color: 'black', fontSize: '12px' }}>
+                <Stack sx={{ width: 260 }} alignItems={'self-start'}>
+                  <Typography
+                    variant='body2'
+                    sx={{ textAlign: 'left', color: 'black', fontSize: '12px', lineHeight: 1 }}
+                  >
                     {entry.value}
                   </Typography>
                 </Stack>
@@ -151,7 +169,7 @@ const RecordView = () => {
           </Grid>
 
           {/* ### QRCODE SCANNING */}
-          <Grid item xs={4}>
+          <Grid item xs={4} sx={{ alignItems: 'left' }}>
             <Box
               sx={{
                 padding: 2,
@@ -162,23 +180,23 @@ const RecordView = () => {
             >
               <QRCode
                 value={`https://espunjabs.netlify.app/eStampCitizenPortal/GeneratePDF/Stamp_Receipt.html/${userData?.auto_id}`}
-                size={100}
+                size={90}
                 level='H'
               />
-              <Typography variant='body2' gutterBottom my={3} color='black'>
-                Scan for online verification
+              <Typography variant='body2' gutterBottom my={3} color='black' fontSize={11}>
+                <b>Scan for online verification</b>
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ mt: '20px' }}>
-            <Box sx={{ border: '3px solid #202124', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+            {/* <Box sx={{ border: '3px solid #202124', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
               <Typography fontSize='12px' variant='body1' fontWeight='700' color='black' lang='ur' sx={{ padding: 3 }}>
                 Note: This transaction is valid for seven days from the date of issue. E-Stamp can be verified through
                 the website via Call or SMS.
                 <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to "8100"</div>
               </Typography>
-            </Box>
-            {/* <Image src='/capture.png' alt='Image Alt Text' width={700} height={70} /> */}
+            </Box> */}
+            <Image src='/stamp.png' alt='Image Alt Text' width={700} height={70} />
           </Grid>
         </Grid>
       </Paper>
