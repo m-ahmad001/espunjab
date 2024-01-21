@@ -177,7 +177,7 @@ const RecordView = () => {
                 variant='body1'
                 fontWeight='700'
                 color='black'
-                lang='urdu'
+                lang='ur'
                 sx={{ textAlign: 'right', padding: 3, whiteSpace: 'nowrap' }}
               >
                 {urdu}
