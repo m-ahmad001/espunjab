@@ -99,7 +99,7 @@ const SecondPage = () => {
         agent: '',
         address: '',
         userName: '',
-        autoId: generateAutoId()
+        autoId: generateRandomId()
       })
       toast('Created 👍🏻')
       console.log('Form data inserted successfully:', data)
