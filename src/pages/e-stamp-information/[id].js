@@ -51,16 +51,22 @@ const RecordView = () => {
   const dataEntries = [
     {
       key: 'ID:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.auto_id}</Typography>
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>{userData?.auto_id}</Typography>
     },
     {
       key: 'Type:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.recordType || '-'}</Typography>
+      value: (
+        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>
+          {userData?.recordType || '-'}
+        </Typography>
+      )
     },
 
     {
       key: 'Amount:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black' }}>{userData?.type_amount}</Typography>
+      value: (
+        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>{userData?.type_amount}</Typography>
+      )
     },
     { key: '', value: '' },
     { key: '', value: '' },
@@ -126,12 +132,12 @@ const RecordView = () => {
                 sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}
               >
                 <Stack>
-                  <Typography variant='body1' sx={{ color: 'black' }}>
+                  <Typography variant='body1' sx={{ color: 'black', fontSize: '12px' }}>
                     {entry.key}
                   </Typography>
                 </Stack>
                 <Stack sx={{ width: 300 }} alignItems={'self-start'}>
-                  <Typography variant='body1' sx={{ textAlign: 'left', color: 'black' }}>
+                  <Typography variant='body1' sx={{ textAlign: 'left', color: 'black', fontSize: '12px' }}>
                     {entry.value}
                   </Typography>
                 </Stack>
