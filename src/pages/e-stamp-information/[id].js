@@ -145,10 +145,6 @@ const RecordView = () => {
                 </Stack>
               </Box>
             ))}
-
-            <Grid item xs={12}>
-              <Image width={700} src='/stamp.png' height={100} />
-            </Grid>
           </Grid>
 
           {/* ### QRCODE SCANNING */}
@@ -169,6 +165,22 @@ const RecordView = () => {
               <Typography variant='body2' gutterBottom my={3} color='black'>
                 Scan for online verification
               </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sx={{ mt: '20px' }}>
+            <Box sx={{ border: '3px solid #1C1C20', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+              <Typography
+                fontSize='12px'
+                variant='body1'
+                fontWeight='700'
+                color='black'
+                sx={{ textAlign: 'right', padding: 3 }}
+              >
+                نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ
+                کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے
+                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to 8100</div>
+              </Typography>
+              {/* <Image width={700} src='/stamp.png' height={100} /> */}
             </Box>
           </Grid>
         </Grid>
