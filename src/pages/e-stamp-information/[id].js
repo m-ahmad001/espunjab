@@ -51,12 +51,12 @@ const RecordView = () => {
   const dataEntries = [
     {
       key: 'ID:',
-      value: <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>{userData?.auto_id}</Typography>
+      value: <Typography sx={{ fontWeight: 'bold', color: 'black', lineHeight: 1 }}>{userData?.auto_id}</Typography>
     },
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>
+        <Typography sx={{ fontWeight: 'bold', color: 'black', lineHeight: 1 }}>
           {userData?.recordType || '-'}
         </Typography>
       )
@@ -65,7 +65,9 @@ const RecordView = () => {
     {
       key: 'Amount:',
       value: (
-        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px' }}>{userData?.type_amount}</Typography>
+        <Typography sx={{ fontWeight: 'bold', color: 'black', fontSize: '12px', lineHeight: 1 }}>
+          {userData?.type_amount}
+        </Typography>
       )
     },
     { key: '', value: '' },
@@ -166,7 +168,7 @@ const RecordView = () => {
                 size={100}
                 level='H'
               />
-              <Typography variant='body1' gutterBottom my={3} color='black'>
+              <Typography variant='body2' gutterBottom my={3} color='black'>
                 Scan for online verification
               </Typography>
             </Box>
