@@ -146,9 +146,9 @@ const RecordView = () => {
               </Box>
             ))}
 
-            <Box sx={{ p: 3, my: 7 }}>
-              <Image width={700} src='/stamp.png' height={100} />{' '}
-            </Box>
+            <Grid item>
+              <Image width={700} src='/stamp.png' height={100} />
+            </Grid>
           </Grid>
 
           {/* ### QRCODE SCANNING */}
@@ -159,8 +159,6 @@ const RecordView = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
-
-                // justifyContent: 'center'
               }}
             >
               <QRCode
