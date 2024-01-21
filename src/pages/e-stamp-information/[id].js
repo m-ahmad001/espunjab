@@ -178,7 +178,7 @@ const RecordView = () => {
                 fontWeight='700'
                 color='black'
                 lang='ur'
-                sx={{ textAlign: 'right', padding: 3, whiteSpace: 'nowrap' }}
+                sx={{ textAlign: 'right', padding: 3 }}
               >
                 {urdu}
                 <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to "8100"</div>
