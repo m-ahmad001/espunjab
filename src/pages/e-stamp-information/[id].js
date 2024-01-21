@@ -146,7 +146,7 @@ const RecordView = () => {
               </Box>
             ))}
 
-            <Grid item>
+            <Grid item xs={12}>
               <Image width={700} src='/stamp.png' height={100} />
             </Grid>
           </Grid>
