@@ -33,6 +33,9 @@ const RecordView = () => {
 
   console.log('🚀 ~ RecordView ~ id:', id)
 
+  const urdu =
+    'نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے'
+
   // *** HANDLE GET REQUEST
   const getData = async () => {
     try {
@@ -168,21 +171,20 @@ const RecordView = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ mt: '20px' }}>
-            <Box sx={{ border: '3px solid #1C1C20', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={{ border: '3px solid black', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
               <Typography
                 fontSize='12px'
                 variant='body1'
                 fontWeight='700'
                 color='black'
-                lang='ur' // Add the lang attribute here
-                sx={{ textAlign: 'right', padding: 3 }}
+                lang='urdu'
+                sx={{ textAlign: 'right', padding: 3, whiteSpace: 'nowrap' }}
               >
-                نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ
-                کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے
-                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to 8100.</div>
+                {urdu}
+                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to "8100"</div>
               </Typography>
-              {/* <Image width={700} src='/stamp.png' height={100} /> */}
             </Box>
+            <Image src='/capture.png' alt='Image Alt Text' width={700} height={70} />
           </Grid>
         </Grid>
       </Paper>
