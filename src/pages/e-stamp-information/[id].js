@@ -101,7 +101,7 @@ const RecordView = () => {
     { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
     {
       key: 'Amount in words:',
-      value: userData?.amountInWords
+      value: userData?.amountInWords + ' ' + 'Rupees Only'
     },
     { key: 'Reason:', value: userData?.reason },
     { key: 'Vendor Information:', value: userData?.vendor_information }
