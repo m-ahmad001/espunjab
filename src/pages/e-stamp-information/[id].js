@@ -196,7 +196,7 @@ const RecordView = () => {
                 <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to "8100"</div>
               </Typography>
             </Box> */}
-            <Image src='/stamp.png' alt='Image Alt Text' width={700} height={70} />
+            <Image src='/stamp.png' alt='Image Alt Text' width={500} height={70} />
           </Grid>
         </Grid>
       </Paper>
