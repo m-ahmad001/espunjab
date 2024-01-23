@@ -55,16 +55,16 @@ const RecordView = () => {
     {
       key: 'ID:',
       value: (
-        <Typography sx={{ fontWeight: 500, color: 'black', lineHeight: 1, fontSize: '13px' }}>
-          <b>{userData?.auto_id}</b>
+        <Typography sx={{ fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+          {userData?.auto_id}
         </Typography>
       )
     },
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontWeight: 500, color: 'black', lineHeight: 1, fontSize: '13px' }}>
-          <b>{userData?.recordType || '-'}</b>
+        <Typography sx={{ fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+          {userData?.recordType || '-'}
         </Typography>
       )
     },
@@ -82,7 +82,7 @@ const RecordView = () => {
             fontStyle: '-moz-initial'
           }}
         >
-          <b>Rs {userData?.type_amount}/-</b>
+          Rs {userData?.type_amount}/-
         </Typography>
       )
     },
