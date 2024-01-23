@@ -90,7 +90,7 @@ const RecordView = () => {
     { key: '', value: '' },
     { key: '', value: '' },
     { key: 'Description:', value: userData?.description },
-    { key: 'Applicant Name:', value: userData?.applicant_name },
+    { key: 'Applicant:', value: userData?.applicant_name },
     { key: `${userData?.checkbox}:`, value: userData?.userName },
     { key: 'Agent:', value: userData?.agent },
     { key: 'Address:', value: userData?.address },
