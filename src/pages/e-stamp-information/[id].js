@@ -189,14 +189,7 @@ const RecordView = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ mt: '20px' }}>
-            {/* <Box sx={{ border: '3px solid #202124', width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-              <Typography fontSize='12px' variant='body1' fontWeight='700' color='black' lang='ur' sx={{ padding: 3 }}>
-                Note: This transaction is valid for seven days from the date of issue. E-Stamp can be verified through
-                the website via Call or SMS.
-                <div>Type "eStamp &lt;16 digit eStamp Number&gt;" send to "8100"</div>
-              </Typography>
-            </Box> */}
-            <Image src='/stamp.png' alt='Image Alt Text' width={500} height={70} />
+            <Image src='/stamp.png' alt='Image Alt Text' width={630} height={70} />
           </Grid>
         </Grid>
       </Paper>
