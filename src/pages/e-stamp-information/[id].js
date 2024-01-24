@@ -179,7 +179,7 @@ const RecordView = () => {
               }}
             >
               <QRCode
-                value={`https://espunjabs.netlify.app/eStampCitizenPortal/GeneratePDF/Stamp_Receipt.html/${userData?.auto_id}`}
+                value={`https://espunjab.online/eStampCitizenPortal/GeneratePDF/Stamp_Receipt.html/${userData?.auto_id}`}
                 size={90}
                 level='H'
               />
