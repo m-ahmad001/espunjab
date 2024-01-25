@@ -190,7 +190,7 @@ const RecordView = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ mt: '20px' }}>
-            <Image src='/stamp.png' alt='Image Alt Text' width={630} height={70} />
+            <Image src='/stamp.png' alt='Image Alt Text' width={580} height={90} />
           </Grid>
         </Grid>
       </Paper>
