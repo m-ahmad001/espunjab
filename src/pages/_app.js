@@ -96,7 +96,6 @@ const App = props => {
         <meta name='keywords' content='ES PUNJAB, es punjab' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
         <link rel='preconnect' href='https://fonts.gstatic.com' />
-       
       </Head>
 
       <AuthProvider>
