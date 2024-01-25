@@ -144,8 +144,8 @@ const RecordView = () => {
           {/* <Grid item xs={12} ml={-2}></Grid> */}
           <Grid item xs={8}>
             <div style={{ marginLeft: -10 }}>
-              <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' format='EAN13' />
-              {/* <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' format='CODE39' /> */}
+              {/* <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' format='EAN13' /> */}
+              <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' />
             </div>
             {dataEntries.map((entry, index) => (
               <Box
