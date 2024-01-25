@@ -189,8 +189,8 @@ const RecordView = () => {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} sx={{ mt: '20px' }}>
-            <Image src='/stamp.png' alt='Image Alt Text' width={580} height={90} />
+          <Grid item xs={12} sx={{ mt: '20px', width: '630px' }}>
+            <img src='/stamp.png' alt='Image Alt Text' style={{ width: '100%', height: '97px' }} />
           </Grid>
         </Grid>
       </Paper>
