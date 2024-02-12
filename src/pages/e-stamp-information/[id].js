@@ -55,7 +55,7 @@ const RecordView = () => {
     {
       key: 'ID:',
       value: (
-        <Typography sx={{ fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
           {userData?.auto_id}
         </Typography>
       )
@@ -63,7 +63,7 @@ const RecordView = () => {
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
           {userData?.recordType || '-'}
         </Typography>
       )
@@ -74,6 +74,7 @@ const RecordView = () => {
       value: (
         <Typography
           sx={{
+            fontFamily: 'Calibri',
             fontWeight: 500,
             color: 'black',
             lineHeight: 1,
@@ -153,14 +154,23 @@ const RecordView = () => {
                 sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}
               >
                 <Stack>
-                  <Typography variant='body2' sx={{ color: 'black', fontSize: '12px', lineHeight: 1 }}>
+                  <Typography
+                    variant='body2'
+                    sx={{ fontFamily: 'Calibri', color: 'black', fontSize: '12px', lineHeight: 1 }}
+                  >
                     {entry.key}
                   </Typography>
                 </Stack>
                 <Stack sx={{ width: 260 }} alignItems={'self-start'}>
                   <Typography
                     variant='body2'
-                    sx={{ textAlign: 'left', color: 'black', fontSize: '12px', lineHeight: 1 }}
+                    sx={{
+                      fontFamily: 'Calibri',
+                      textAlign: 'left',
+                      color: 'black',
+                      fontSize: '12px',
+                      lineHeight: 1
+                    }}
                   >
                     {entry.value}
                   </Typography>
@@ -184,7 +194,14 @@ const RecordView = () => {
                 size={90}
                 level='H'
               />
-              <Typography variant='body2' gutterBottom my={3} color='black' fontSize={11}>
+              <Typography
+                variant='body2'
+                gutterBottom
+                my={3}
+                color='black'
+                fontSize={11}
+                sx={{ fontFamily: 'Calibri' }}
+              >
                 <b>Scan for online verification</b>
               </Typography>
             </Box>

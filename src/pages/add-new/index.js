@@ -47,13 +47,17 @@ const SecondPage = () => {
 
   const handleChange = e => {
     const { name, value } = e.target
-
+    console.log(name, value)
     // const formattedValue = name === 'issueDate' || name === 'validity' ? new Date(value).toUTCString() : value
     setFormData(prevData => ({
       ...prevData,
       [name]: value
     }))
   }
+
+  const currentDate = new Date()
+  const futureDate = new Date(currentDate)
+  futureDate.setDate(currentDate.getDate() + 7)
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -64,10 +68,10 @@ const SecondPage = () => {
     const { data, error } = await supabase.from('forms').upsert([
       {
         amountInWords: amountInWords,
-        issue_date: formData.issueDate,
+        issue_date: currentDate.toUTCString(),
         recordType: formData.recordType,
         type_amount: formData.typeAmount,
-        validity: formData.validity,
+        validity: futureDate.toUTCString(),
         description: formData.description,
         reason: formData.reason,
         applicant_name: formData.applicantName,
@@ -123,14 +127,14 @@ const SecondPage = () => {
             <form onSubmit={handleSubmit}>
               <Stack spacing={2}>
                 <TextField label='ID' name='autoId' value={formData.autoId} InputProps={{ readOnly: true }} />
-                <TextField
+                {/* <TextField
                   label='Issue Date'
                   type='date'
                   name='issueDate'
                   value={formData.issueDate}
                   onChange={handleChange}
                   required
-                />
+                /> */}
                 <TextField
                   label='Type Amount'
                   type='number'
@@ -146,14 +150,14 @@ const SecondPage = () => {
                   onChange={handleChange}
                   required
                 />
-                <TextField
+                {/* <TextField
                   label='Validity'
                   name='validity'
                   type='date'
                   value={formData.validity}
                   onChange={handleChange}
                   required
-                />
+                /> */}
                 <TextField
                   label='Description'
                   name='description'
