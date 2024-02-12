@@ -1,7 +1,6 @@
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { saveAs } from 'file-saver'
 
 // ** Icon Imports
 
@@ -12,12 +11,10 @@ import { Button, Grid, Paper, Stack } from '@mui/material'
 import { useRouter } from 'next/router'
 import QRCode from 'qrcode.react'
 import { useEffect, useState } from 'react'
-import supabase from 'src/configs/supabase'
-import { fDate, fDateTime } from 'src/utils/format-time'
-import { Margin, usePDF } from 'react-to-pdf'
 import Barcode from 'react-barcode'
-import axios from 'axios'
-import Image from 'next/image'
+import { Margin, usePDF } from 'react-to-pdf'
+import supabase from 'src/configs/supabase'
+import { fDateTime } from 'src/utils/format-time'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -30,8 +27,6 @@ const RecordView = () => {
   const router = useRouter()
   const { id } = router.query
   const { toPDF, targetRef } = usePDF({ filename: `${id}.pdf`, page: { margin: Margin.MEDIUM } })
-
-  console.log('🚀 ~ RecordView ~ id:', id)
 
   const urdu =
     'نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے'
@@ -49,7 +44,7 @@ const RecordView = () => {
   // STATES
   useEffect(() => {
     getData()
-  }, [])
+  }, [getData])
 
   const dataEntries = [
     {

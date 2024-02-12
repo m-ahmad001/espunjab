@@ -1,20 +1,18 @@
-import React, { useState } from 'react'
-import Card from '@mui/material/Card'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import TextField from '@mui/material/TextField'
-import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Button from '@mui/material/Button'
-import Stack from '@mui/material/Stack'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import supabase from 'src/configs/supabase'
-import toast from 'react-hot-toast'
-import { useBoolean } from 'src/hooks/use-boolean'
 import { LoadingButton } from '@mui/lab'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import Grid from '@mui/material/Grid'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import converter from 'number-to-words'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
+import supabase from 'src/configs/supabase'
+import { useBoolean } from 'src/hooks/use-boolean'
 import uuidv4 from 'src/utils/uuidv4'
 
 function generateRandomId() {
@@ -47,7 +45,7 @@ const SecondPage = () => {
 
   const handleChange = e => {
     const { name, value } = e.target
-    console.log(name, value)
+
     // const formattedValue = name === 'issueDate' || name === 'validity' ? new Date(value).toUTCString() : value
     setFormData(prevData => ({
       ...prevData,

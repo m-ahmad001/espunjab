@@ -5,28 +5,20 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 // ** MUI Components
-import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import { styled, useTheme } from '@mui/material/styles'
+import MuiFormControlLabel from '@mui/material/FormControlLabel'
+import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
-import MuiFormControlLabel from '@mui/material/FormControlLabel'
+import { styled, useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
 
 // ** Third Party Imports
-import * as yup from 'yup'
-import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
@@ -38,18 +30,18 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 import { useSettings } from 'src/@core/hooks/useSettings'
 
 // ** Demo Imports
-import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
-import axios from 'axios'
-import { useAuth } from 'src/hooks/useAuth'
-import FormProvider from 'src/@core/components/hook-form/form-provider'
-import { Stack } from '@mui/system'
-import { Alert } from '@mui/material'
-import { RHFTextField } from 'src/@core/components/hook-form'
-import IconifyIcon from 'src/@core/components/icon'
 import { LoadingButton } from '@mui/lab'
-import { useBoolean } from 'src/hooks/use-boolean'
-import supabase from 'src/configs/supabase'
+import { Alert } from '@mui/material'
+import { Stack } from '@mui/system'
+import axios from 'axios'
 import { useRouter } from 'next/router'
+import { RHFTextField } from 'src/@core/components/hook-form'
+import FormProvider from 'src/@core/components/hook-form/form-provider'
+import IconifyIcon from 'src/@core/components/icon'
+import supabase from 'src/configs/supabase'
+import { useBoolean } from 'src/hooks/use-boolean'
+import { useAuth } from 'src/hooks/useAuth'
+import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
 
 // ** Styled Components
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
@@ -225,7 +217,7 @@ const Register = () => {
     if (id) {
       setValue('reffer_id', id)
     }
-  }, [])
+  }, [id])
 
   const getIP = async () => {
     try {
