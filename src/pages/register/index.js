@@ -223,8 +223,8 @@ const Register = () => {
     try {
       // const response = await axios.get('https://apiip.net/api/check?accessKey=b388944a-e2bf-4b33-bebd-1d9dc5ffa663')
       // if (response?.data?.ip) {
-        // setIp(response?.data)
-      }
+      // setIp(response?.data)
+      // }
     } catch (error) {
       console.error(error)
     }

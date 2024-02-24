@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -44,7 +45,8 @@ const RecordView = () => {
   // STATES
   useEffect(() => {
     getData()
-  }, [getData])
+  }, [])
+
   function convertToLetterCase(str) {
     return str?.toLowerCase()?.replace(/\b\w/g, function (char) {
       return char?.toUpperCase()
