@@ -45,6 +45,11 @@ const RecordView = () => {
   useEffect(() => {
     getData()
   }, [getData])
+  function convertToLetterCase(str) {
+    return str?.toLowerCase()?.replace(/\b\w/g, function (char) {
+      return char?.toUpperCase()
+    })
+  }
 
   const dataEntries = [
     {
@@ -97,7 +102,7 @@ const RecordView = () => {
     { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
     {
       key: 'Amount in words:',
-      value: userData?.amountInWords + ' ' + 'Rupees Only'
+      value: convertToLetterCase(userData?.amountInWords) + ' ' + 'Rupees Only'
     },
     { key: 'Reason:', value: userData?.reason },
     { key: 'Vendor Information:', value: userData?.vendor_information }
