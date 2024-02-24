@@ -101,7 +101,7 @@ const RecordView = () => {
       key: 'Issue Date:',
       value: fDateTime(userData?.issue_date)
     },
-    { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
+    // { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
     {
       key: 'Amount in words:',
       value: convertToLetterCase(userData?.amountInWords) + ' ' + 'Rupees Only'
