@@ -15,7 +15,8 @@ import { useEffect, useState } from 'react'
 import Barcode from 'react-barcode'
 import { Margin, usePDF } from 'react-to-pdf'
 import supabase from 'src/configs/supabase'
-import { fDateTime } from 'src/utils/format-time'
+import { fDate, fDateTime } from 'src/utils/format-time'
+import Image from 'next/image'
 
 const statusObj = {
   true: { color: 'success', text: 'Approved' },
@@ -102,7 +103,7 @@ const RecordView = () => {
       value: fDateTime(userData?.issue_date)
     },
 
-    // { key: 'Delisted On/Validity:', value: fDateTime(userData?.validity) },
+    { key: 'Delisted On/Validity:', value: fDate(userData?.validity, '') },
     {
       key: 'Amount in words:',
       value: convertToLetterCase(userData?.amountInWords) + ' ' + 'Rupees Only'
@@ -147,10 +148,13 @@ const RecordView = () => {
           {/* ### RECORD INFO */}
           {/* <Grid item xs={12} ml={-2}></Grid> */}
           <Grid item xs={8}>
-            <div style={{ marginLeft: -10 }}>
-              {/* <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' format='EAN13' /> */}
-              <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' />
-            </div>
+            <Box sx={{ width: '250px', py: 2 }}>
+              <img style={{ width: '100%' }} src='/code.png' alt='Whats-App-Image-2024-01-29-at-16-38-37-9fc7bb33' />
+            </Box>
+
+            {/* <div style={{ marginLeft: -10 }}> */}
+            {/* <Barcode value={userData?.auto_id} height='35' width='1' displayValue='false' /> */}
+            {/* </div> */}
             {dataEntries.map((entry, index) => (
               <Box
                 key={index}
