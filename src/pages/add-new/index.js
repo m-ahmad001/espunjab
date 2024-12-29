@@ -8,8 +8,9 @@ import Select from '@mui/material/Select'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import { useRouter } from 'next/router'
 import converter from 'number-to-words'
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import supabase from 'src/configs/supabase'
 import { useBoolean } from 'src/hooks/use-boolean'
@@ -25,6 +26,10 @@ function generateRandomId() {
 }
 
 const SecondPage = () => {
+
+  const query = useRouter()
+  const edit_id = query.query.edit_id
+  console.log("🚀 ~ SecondPage ~ edit_id:", edit_id)
   const isLoading = useBoolean()
 
   const [formData, setFormData] = useState({
@@ -62,51 +67,115 @@ const SecondPage = () => {
     isLoading.onTrue()
     const amountInWords = converter.toWords(formData.typeAmount)
 
-    // Insert form data into the Supabase table
-    const { data, error } = await supabase.from('forms').upsert([
-      {
-        amountInWords: amountInWords,
-        issue_date: currentDate.toUTCString(),
-        recordType: formData.recordType,
-        type_amount: formData.typeAmount,
-        validity: futureDate.toUTCString(),
-        description: formData.description,
-        reason: formData.reason,
-        applicant_name: formData.applicantName,
-        vendor_information: formData.vendorInformation,
-        checkbox: formData.checkbox,
-        agent: formData.agent,
-        address: formData.address,
-        auto_id: formData.autoId,
-        userName: formData.userName
-      }
-    ])
 
-    if (error) {
-      isLoading.onFalse()
-      toast.error('Something went wrong ')
-      console.error('Error inserting data:', error.message)
-    } else {
-      isLoading.onFalse()
-      setFormData({
-        issueDate: '',
-        typeAmount: '',
-        validity: '',
-        description: '',
-        reason: '',
-        recordType: '',
-        applicantName: '',
-        vendorInformation: '',
-        checkbox: '',
-        agent: '',
-        address: '',
-        userName: '',
-        autoId: generateRandomId()
-      })
-      toast('Created 👍🏻')
-      console.log('Form data inserted successfully:', data)
+    if (edit_id) {
+      const { data, error } = await supabase.from('forms').update(
+        {
+          amountInWords: amountInWords,
+          issue_date: currentDate.toUTCString(),
+          recordType: formData.recordType,
+          type_amount: formData.typeAmount,
+          validity: formData.validity,
+          description: formData.description,
+          reason: formData.reason,
+          applicant_name: formData.applicantName,
+          vendor_information: formData.vendorInformation,
+          checkbox: formData.checkbox,
+          agent: formData.agent,
+          address: formData.address,
+          auto_id: formData.autoId,
+          userName: formData.userName,
+        }
+      ).eq('auto_id', formData.autoId)
+      if (error) {
+        isLoading.onFalse()
+        toast.error('Something went wrong ')
+        console.error('Error inserting data:', error.message)
+      } else {
+        isLoading.onFalse()
+        toast('Updated 👍🏻')
+        console.log('Form data inserted successfully:', data)
+      }
+
+    }
+    else {
+      // Insert form data into the Supabase table
+      const { data, error } = await supabase.from('forms').upsert([
+        {
+          amountInWords: amountInWords,
+          issue_date: formData.issue_date,
+          recordType: formData.recordType,
+          type_amount: formData.typeAmount,
+          validity: formData.validity,
+          description: formData.description,
+          reason: formData.reason,
+          applicant_name: formData.applicantName,
+          vendor_information: formData.vendorInformation,
+          checkbox: formData.checkbox,
+          agent: formData.agent,
+          address: formData.address,
+          auto_id: formData.autoId,
+          userName: formData.userName
+        }
+      ])
+
+      if (error) {
+        isLoading.onFalse()
+        toast.error('Something went wrong ')
+        console.error('Error inserting data:', error.message)
+      } else {
+        isLoading.onFalse()
+        setFormData({
+          issueDate: '',
+          typeAmount: '',
+          validity: '',
+          description: '',
+          reason: '',
+          recordType: '',
+          applicantName: '',
+          vendorInformation: '',
+          checkbox: '',
+          agent: '',
+          address: '',
+          userName: '',
+          autoId: generateRandomId()
+        })
+        toast('Created 👍🏻')
+        console.log('Form data inserted successfully:', data)
+      }
     }
   }
+
+  useEffect(() => {
+    if (edit_id) {
+      const fetchRecord = async () => {
+        const { data, error } = await supabase.from('forms').select('*').eq('auto_id', edit_id).single()
+        console.log("🚀 ~ fetchRecord ~ data:", data)
+
+        if (error) {
+          console.error('Error fetching record:', error.message)
+        } else {
+          setFormData({
+            issueDate: data.issue_date,
+            recordType: data.recordType,
+            typeAmount: Number(data.type_amount),
+            validity: data.validity,
+            description: data.description,
+            reason: data.reason,
+            applicantName: data.applicant_name,
+            vendorInformation: data.vendor_information,
+            checkbox: data.checkbox,
+            agent: data.agent,
+            address: data.address,
+            userName: data.userName,
+            autoId: data.auto_id
+          })
+        }
+      }
+
+      fetchRecord()
+    }
+  }, []);
 
   return (
     <Grid container spacing={3}>
@@ -114,7 +183,7 @@ const SecondPage = () => {
         <Card>
           <CardHeader title='Create Awesome 🙌' />
           <CardContent>
-            <Typography sx={{ mb: 2 }}>Add New Records.</Typography>
+            <Typography sx={{ mb: 2 }}>{edit_id ? "Edit Record" : "Add New Records"}.</Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -199,7 +268,7 @@ const SecondPage = () => {
                 <TextField label='Address' name='address' value={formData.address} onChange={handleChange} required />
 
                 <LoadingButton loading={isLoading.value} type='submit' variant='contained'>
-                  Submit
+                  {edit_id ? 'Update' : 'Create'}
                 </LoadingButton>
               </Stack>
             </form>

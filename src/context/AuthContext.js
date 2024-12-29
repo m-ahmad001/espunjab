@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
 
     const userId = user?.id
     if (userId) {
-      setLoading(true)
+
 
       // await axios
       //   .get(authConfig.meEndpoint, {
@@ -63,6 +63,18 @@ const AuthProvider = ({ children }) => {
     }
   }
   useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      debugger
+      if (event == "PASSWORD_RECOVERY") {
+        const newPassword = prompt("What would you like your new password to be?");
+
+        const { data, error } = await supabase.auth
+          .updateUser({ password: newPassword })
+
+        if (data) alert("Password updated successfully!")
+        if (error) alert("There was an error updating your password.")
+      }
+    })
     initAuth()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

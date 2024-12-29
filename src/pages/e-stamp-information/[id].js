@@ -115,7 +115,7 @@ const RecordView = () => {
   ]
 
   return (
-    <Box sx={{ width: ' 210mm', height: '297mm', margin: '0 auto' }}>
+    <Box sx={{ width: ' 210mm', height: '297mm', margin: '0 auto', }}>
       <Box sx={{ textAlign: 'right', mb: 2 }}>
         <Button
           variant='outlined'
@@ -198,7 +198,7 @@ const RecordView = () => {
             >
               <QRCode
                 value={`https://espunjab.online/eStampCitizenPortal/GeneratePDF/Stamp_Receipt.html/${userData?.auto_id}`}
-                size={90}
+                size={100}
                 level='H'
               />
               <Typography

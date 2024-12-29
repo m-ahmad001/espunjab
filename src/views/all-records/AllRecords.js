@@ -70,15 +70,18 @@ const AllRecords = () => {
     },
     {
       flex: 0.15,
-      minWidth: 110,
+      minWidth: 200,
       field: 'Action',
-      headerName: 'StaActiontus',
+      headerName: 'Actions',
       renderCell: ({ row }) => (
-        <>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Button variant='contained' component={Link} href={`/e-stamp-information/${row?.auto_id}`}>
-            Action
+            View
           </Button>
-        </>
+          <Button variant='outlined' component={Link} href={`/add-new/?edit_id=${row?.auto_id}`}>
+            Edit
+          </Button>
+        </Box>
       )
     }
   ]
