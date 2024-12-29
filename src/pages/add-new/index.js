@@ -72,7 +72,7 @@ const SecondPage = () => {
       const { data, error } = await supabase.from('forms').update(
         {
           amountInWords: amountInWords,
-          issue_date: currentDate.toUTCString(),
+          issue_date: formData.issueDate,
           recordType: formData.recordType,
           type_amount: formData.typeAmount,
           validity: formData.validity,
@@ -103,10 +103,10 @@ const SecondPage = () => {
       const { data, error } = await supabase.from('forms').upsert([
         {
           amountInWords: amountInWords,
-          issue_date: formData.issue_date,
+          issue_date: currentDate.toUTCString(),
           recordType: formData.recordType,
           type_amount: formData.typeAmount,
-          validity: formData.validity,
+          validity: futureDate.toUTCString(),
           description: formData.description,
           reason: formData.reason,
           applicant_name: formData.applicantName,
