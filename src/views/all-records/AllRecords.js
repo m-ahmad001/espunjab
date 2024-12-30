@@ -35,11 +35,11 @@ const AllRecords = () => {
   const columns = [
     {
       flex: 0.25,
-      field: 'created_at',
+      field: 'issue_date',
       minWidth: 200,
       headerName: 'Date',
       renderCell: ({ row }) => {
-        return <Box sx={{ display: 'flex', alignItems: 'center' }}>{fDate(row.created_at)}</Box>
+        return <Box sx={{ display: 'flex', alignItems: 'center' }}>{fDate(row.issue_date)}</Box>
       }
     },
     {

@@ -14,6 +14,7 @@ import { use, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import supabase from 'src/configs/supabase'
 import { useBoolean } from 'src/hooks/use-boolean'
+import { fDate } from 'src/utils/format-time'
 import uuidv4 from 'src/utils/uuidv4'
 
 function generateRandomId() {
@@ -32,8 +33,12 @@ const SecondPage = () => {
   console.log("🚀 ~ SecondPage ~ edit_id:", edit_id)
   const isLoading = useBoolean()
 
+  const currentDate = new Date()
+  const futureDate = new Date(currentDate)
+  futureDate.setDate(currentDate.getDate() + 7)
+
   const [formData, setFormData] = useState({
-    issueDate: '',
+    issueDate: fDate(currentDate, 'yyyy-MM-dd'),
     recordType: '',
     typeAmount: '',
     validity: '',
@@ -47,6 +52,7 @@ const SecondPage = () => {
     userName: '',
     autoId: generateRandomId()
   })
+  console.log("🚀 ~ SecondPage ~ formData:", formData)
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -58,24 +64,26 @@ const SecondPage = () => {
     }))
   }
 
-  const currentDate = new Date()
-  const futureDate = new Date(currentDate)
-  futureDate.setDate(currentDate.getDate() + 7)
+
 
   const handleSubmit = async e => {
     e.preventDefault()
     isLoading.onTrue()
     const amountInWords = converter.toWords(formData.typeAmount)
-
+    const baseDate = new Date(formData.issueDate); // Get the base date
+    const currentTime = new Date(); // Get the current time
+    baseDate.setHours(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());
+    const futureDate = new Date(baseDate)
+    futureDate.setDate(baseDate.getDate() + 7)
 
     if (edit_id) {
       const { data, error } = await supabase.from('forms').update(
         {
           amountInWords: amountInWords,
-          issue_date: formData.issueDate,
+          issue_date: baseDate.toUTCString(),
           recordType: formData.recordType,
           type_amount: formData.typeAmount,
-          validity: formData.validity,
+          validity: baseDate.toUTCString(),
           description: formData.description,
           reason: formData.reason,
           applicant_name: formData.applicantName,
@@ -103,7 +111,7 @@ const SecondPage = () => {
       const { data, error } = await supabase.from('forms').upsert([
         {
           amountInWords: amountInWords,
-          issue_date: currentDate.toUTCString(),
+          issue_date: baseDate.toUTCString(),
           recordType: formData.recordType,
           type_amount: formData.typeAmount,
           validity: futureDate.toUTCString(),
@@ -150,13 +158,12 @@ const SecondPage = () => {
     if (edit_id) {
       const fetchRecord = async () => {
         const { data, error } = await supabase.from('forms').select('*').eq('auto_id', edit_id).single()
-        console.log("🚀 ~ fetchRecord ~ data:", data)
 
         if (error) {
           console.error('Error fetching record:', error.message)
         } else {
           setFormData({
-            issueDate: data.issue_date,
+            issueDate: fDate(data.issue_date, 'yyyy-MM-dd'),
             recordType: data.recordType,
             typeAmount: Number(data.type_amount),
             validity: data.validity,
@@ -194,14 +201,14 @@ const SecondPage = () => {
             <form onSubmit={handleSubmit}>
               <Stack spacing={2}>
                 <TextField label='ID' name='autoId' value={formData.autoId} InputProps={{ readOnly: true }} />
-                {/* <TextField
+                <TextField
                   label='Issue Date'
                   type='date'
                   name='issueDate'
                   value={formData.issueDate}
                   onChange={handleChange}
                   required
-                /> */}
+                />
                 <TextField
                   label='Type Amount'
                   type='number'
