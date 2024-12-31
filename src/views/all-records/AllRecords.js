@@ -51,14 +51,14 @@ const AllRecords = () => {
     },
     {
       flex: 0.3,
-      minWidth: 250,
+      minWidth: 300,
       field: 'applicant_name',
       headerName: 'Applicant Name',
       renderCell: ({ row }) => <Typography variant='body2'>{row?.applicant_name}</Typography>
     },
     {
       flex: 0.3,
-      minWidth: 250,
+      minWidth: 150,
       field: 'type_amount',
       headerName: 'Amount',
       renderCell: ({ row }) => <Typography variant='body2'>{row.type_amount || 0}</Typography>
