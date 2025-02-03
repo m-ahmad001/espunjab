@@ -1,6 +1,13 @@
 const navigation = () => {
   return [
     {
+      path: '/add-new',
+      action: 'read',
+      subject: 'acl-page',
+      title: 'Add New Record',
+      icon: 'mdi:shield-outline'
+    },
+    {
       path: '/acl',
       action: 'read',
       subject: 'acl-page',
@@ -8,11 +15,11 @@ const navigation = () => {
       icon: 'mdi:shield-outline'
     },
     {
-      path: '/add-new',
+      title: 'Update Password',
+      icon: 'mdi:lock-reset',
+      path: '/update-password',
       action: 'read',
       subject: 'acl-page',
-      title: 'Add New Record',
-      icon: 'mdi:shield-outline'
     }
   ]
 }
