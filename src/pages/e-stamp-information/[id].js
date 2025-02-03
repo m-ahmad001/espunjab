@@ -58,7 +58,7 @@ const RecordView = () => {
     {
       key: 'ID:',
       value: (
-        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
           {userData?.auto_id}
         </Typography>
       )
@@ -66,12 +66,11 @@ const RecordView = () => {
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px' }}>
+        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
           {userData?.recordType || '-'}
         </Typography>
       )
     },
-
     {
       key: 'Amount:',
       value: (
@@ -83,7 +82,9 @@ const RecordView = () => {
             lineHeight: 1,
             fontSize: '12px',
             fontWeight: 'bolder',
-            fontStyle: '-moz-initial'
+            fontStyle: '-moz-initial',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden'
           }}
         >
           Rs {userData?.type_amount}/-
@@ -102,16 +103,13 @@ const RecordView = () => {
       key: 'Issue Date:',
       value: fDateTime(userData?.issue_date)
     },
-
     { key: 'Delisted On/Validity:', value: fDate(userData?.validity, '') },
     {
       key: 'Amount in words:',
       value: convertToLetterCase(userData?.amountInWords) + ' ' + 'Rupees Only'
     },
     { key: 'Reason:', value: userData?.reason },
-    { key: 'Vendor Information:', value: userData?.vendor_information }
-
-    // { key: 'Created At:', value: new Date(userData?.created_at).toLocaleString() }
+    { key: 'Vendor Information:', value:   <Typography sx={{ fontFamily: 'Calibri', color: 'black', fontSize: '12px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{userData?.vendor_information}</Typography> }
   ]
 
   return (
