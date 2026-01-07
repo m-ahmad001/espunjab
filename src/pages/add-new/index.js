@@ -27,10 +27,9 @@ function generateRandomId() {
 }
 
 const SecondPage = () => {
-
   const query = useRouter()
   const edit_id = query.query.edit_id
-  console.log("🚀 ~ SecondPage ~ edit_id:", edit_id)
+  console.log('🚀 ~ SecondPage ~ edit_id:', edit_id)
   const isLoading = useBoolean()
 
   const currentDate = new Date()
@@ -52,7 +51,7 @@ const SecondPage = () => {
     userName: '',
     autoId: generateRandomId()
   })
-  console.log("🚀 ~ SecondPage ~ formData:", formData)
+  console.log('🚀 ~ SecondPage ~ formData:', formData)
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -64,21 +63,25 @@ const SecondPage = () => {
     }))
   }
 
-
-
   const handleSubmit = async e => {
     e.preventDefault()
     isLoading.onTrue()
     const amountInWords = converter.toWords(formData.typeAmount)
-    const baseDate = new Date(formData.issueDate); // Get the base date
-    const currentTime = new Date(); // Get the current time
-    baseDate.setHours(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());
+    const baseDate = new Date(formData.issueDate) // Get the base date
+    const currentTime = new Date() // Get the current time
+    baseDate.setHours(
+      currentTime.getHours(),
+      currentTime.getMinutes(),
+      currentTime.getSeconds(),
+      currentTime.getMilliseconds()
+    )
     const futureDate = new Date(baseDate)
     futureDate.setDate(baseDate.getDate() + 7)
 
     if (edit_id) {
-      const { data, error } = await supabase.from('forms').update(
-        {
+      const { data, error } = await supabase
+        .from('forms')
+        .update({
           amountInWords: amountInWords,
           issue_date: baseDate.toUTCString(),
           recordType: formData.recordType,
@@ -92,9 +95,9 @@ const SecondPage = () => {
           agent: formData.agent,
           address: formData.address,
           auto_id: formData.autoId,
-          userName: formData.userName,
-        }
-      ).eq('auto_id', formData.autoId)
+          userName: formData.userName
+        })
+        .eq('auto_id', formData.autoId)
       if (error) {
         isLoading.onFalse()
         toast.error('Something went wrong ')
@@ -104,9 +107,7 @@ const SecondPage = () => {
         toast('Updated 👍🏻')
         console.log('Form data inserted successfully:', data)
       }
-
-    }
-    else {
+    } else {
       // Insert form data into the Supabase table
       const { data, error } = await supabase.from('forms').upsert([
         {
@@ -126,6 +127,19 @@ const SecondPage = () => {
           userName: formData.userName
         }
       ])
+
+      // 1. Get current value
+      const { data: statData } = await supabase
+        .from('statistics')
+        .select('metric_value')
+        .eq('metric_name', 'total_forms')
+        .single()
+
+      // 2. Update with new value
+      const { error: updateerror } = await supabase
+        .from('statistics')
+        .update({ metric_value: statData.metric_value + 1 })
+        .eq('metric_name', 'total_forms')
 
       if (error) {
         isLoading.onFalse()
@@ -182,7 +196,7 @@ const SecondPage = () => {
 
       fetchRecord()
     }
-  }, []);
+  }, [])
 
   return (
     <Grid container spacing={3}>
@@ -190,7 +204,7 @@ const SecondPage = () => {
         <Card>
           <CardHeader title='Create Awesome 🙌' />
           <CardContent>
-            <Typography sx={{ mb: 2 }}>{edit_id ? "Edit Record" : "Add New Records"}.</Typography>
+            <Typography sx={{ mb: 2 }}>{edit_id ? 'Edit Record' : 'Add New Records'}.</Typography>
           </CardContent>
         </Card>
       </Grid>
