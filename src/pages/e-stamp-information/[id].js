@@ -31,7 +31,7 @@ const RecordView = () => {
   const { toPDF, targetRef } = usePDF({ filename: `${id}.pdf`, page: { margin: Margin.MEDIUM } })
 
   const urdu =
-    'نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ کیوآر کوڈ یا ایس ایم ایس سے کی جا سکتی ہے'
+    'نوٹ : یہ ٹرانزیکشن تاریخ اجرا سے سات دنوں تک کے لیے قابل استعمال ہے ۔ ای اسٹامپ کی تصدیق بذریہ ویب سائٹ کیوآر کوڈ سے کی جا سکتی ہے'
 
   // *** HANDLE GET REQUEST
   const getData = async () => {
@@ -58,7 +58,17 @@ const RecordView = () => {
     {
       key: 'ID:',
       value: (
-        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+        <Typography
+          sx={{
+            fontFamily: 'Calibri',
+            fontWeight: 700,
+            color: 'black',
+            lineHeight: 1,
+            fontSize: '13px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden'
+          }}
+        >
           {userData?.auto_id}
         </Typography>
       )
@@ -66,7 +76,17 @@ const RecordView = () => {
     {
       key: 'Type:',
       value: (
-        <Typography sx={{ fontFamily: 'Calibri', fontWeight: 700, color: 'black', lineHeight: 1, fontSize: '13px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+        <Typography
+          sx={{
+            fontFamily: 'Calibri',
+            fontWeight: 700,
+            color: 'black',
+            lineHeight: 1,
+            fontSize: '13px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden'
+          }}
+        >
           {userData?.recordType || '-'}
         </Typography>
       )
@@ -109,11 +129,27 @@ const RecordView = () => {
       value: convertToLetterCase(userData?.amountInWords) + ' ' + 'Rupees Only'
     },
     { key: 'Reason:', value: userData?.reason },
-    { key: 'Vendor Information:', value:   <Typography sx={{ fontFamily: 'Calibri', color: 'black', fontSize: '12px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{userData?.vendor_information}</Typography> }
+    {
+      key: 'Vendor Information:',
+      value: (
+        <Typography
+          sx={{
+            fontFamily: 'Calibri',
+            color: 'black',
+            fontSize: '12px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {userData?.vendor_information}
+        </Typography>
+      )
+    }
   ]
 
   return (
-    <Box sx={{ width: ' 210mm', height: '297mm', margin: '0 auto', }}>
+    <Box sx={{ width: ' 210mm', height: '297mm', margin: '0 auto' }}>
       <Box sx={{ textAlign: 'right', mb: 2 }}>
         <Button
           variant='outlined'
@@ -212,7 +248,7 @@ const RecordView = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ mt: '20px', width: '630px' }}>
-            <img src='/stamp.png' alt='Image Alt Text' style={{ width: '100%', height: '97px' }} />
+            <img src='/image.png' alt='Image Alt Text' style={{ width: '100%', height: '97px' }} />
           </Grid>
         </Grid>
       </Paper>
