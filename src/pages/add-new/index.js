@@ -196,7 +196,7 @@ const SecondPage = () => {
 
       fetchRecord()
     }
-  }, [])
+  }, [edit_id])
 
   return (
     <Grid container spacing={3}>
