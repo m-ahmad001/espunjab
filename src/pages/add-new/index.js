@@ -67,16 +67,16 @@ const SecondPage = () => {
     e.preventDefault()
     isLoading.onTrue()
     const amountInWords = converter.toWords(formData.typeAmount)
-    const baseDate = new Date(formData.issueDate) // Get the base date
-    const currentTime = new Date() // Get the current time
-    baseDate.setHours(
-      currentTime.getHours(),
-      currentTime.getMinutes(),
-      currentTime.getSeconds(),
-      currentTime.getMilliseconds()
-    )
+
+    // Parse the date string manually to avoid timezone issues
+    const [year, month, day] = formData.issueDate.split('-').map(Number)
+
+    // Create baseDate at midnight in local timezone
+    const baseDate = new Date(year, month - 1, day)
+
+    // Create futureDate by adding 7 days
     const futureDate = new Date(baseDate)
-    futureDate.setDate(baseDate.getDate() + 7)
+    futureDate.setDate(futureDate.getDate() + 7)
 
     if (edit_id) {
       const { data, error } = await supabase
