@@ -88,7 +88,7 @@ const SecondPage = () => {
           issue_date: baseDate.toUTCString(),
           recordType: formData.recordType,
           type_amount: formData.typeAmount,
-          validity: baseDate.toUTCString(),
+          validity: futureDate.toUTCString(),
           description: formData.description,
           reason: formData.reason,
           applicant_name: formData.applicantName,
