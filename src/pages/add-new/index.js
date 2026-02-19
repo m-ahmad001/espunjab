@@ -71,8 +71,10 @@ const SecondPage = () => {
     // Parse the date string manually to avoid timezone issues
     const [year, month, day] = formData.issueDate.split('-').map(Number)
 
-    // Create baseDate at midnight in local timezone
+    // Create baseDate using selected date + current local time
     const baseDate = new Date(year, month - 1, day)
+    const now = new Date()
+    baseDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds())
 
     // Create futureDate by adding 7 days
     const futureDate = new Date(baseDate)
